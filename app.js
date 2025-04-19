@@ -21,7 +21,7 @@ app.get("/", (req, res) => {
   res.render("index", { weather: null, error: null });
 });
 
-// Xử lý form tìm kiếm thời tiết
+// Xử lý form tìm thời tiết
 app.post("/weather", async (req, res) => {
   const city = req.body.city;
 
