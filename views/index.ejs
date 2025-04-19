@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header class="text-center my-4">
+        <h1>Weather App</h1>
+      </header>
+
+      <main>
+        <div class="row justify-content-center">
+          <div class="col-md-6">
+            <div class="card shadow-sm">
+              <div class="card-body">
+                <h2 class="card-title text-center mb-4">Search Weather</h2>
+
+                <% if (error) { %>
+                <div class="alert alert-danger" role="alert"><%= error %></div>
+                <% } %>
+
+                <form action="/weather" method="POST" class="mb-4">
+                  <div class="mb-3">
+                    <div class="input-group">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="city"
+                        name="city"
+                        placeholder="Enter city name..."
+                        required
+                      />
+                      <button type="submit" class="btn btn-primary">
+                        Get Weather
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <% if (weather) { %>
+        <div class="row justify-content-center mt-4">
+          <div class="col-md-6">
+            <div class="card shadow-sm">
+              <div class="card-body">
+                <div class="text-center">
+                  <h2 class="card-title">
+                    <%= weather.city %>, <%= weather.country %>
+                  </h2>
+                  <div class="weather-icon">
+                    <img
+                      src="https://openweathermap.org/img/wn/<%= weather.icon %>@2x.png"
+                      alt="<%= weather.description %>"
+                    />
+                  </div>
+                  <h3 class="temp"><%= Math.round(weather.temperature) %>°C</h3>
+                  <p class="description text-capitalize">
+                    <%= weather.description %>
+                  </p>
+                </div>
+
+                <div class="weather-details mt-4">
+                  <div class="row text-center">
+                    <div class="col-4">
+                      <div class="detail-item">
+                        <p class="detail-label">Feels Like</p>
+                        <p class="detail-value">
+                          <%= Math.round(weather.feelsLike) %>°C
+                        </p>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="detail-item">
+                        <p class="detail-label">Humidity</p>
+                        <p class="detail-value"><%= weather.humidity %>%</p>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="detail-item">
+                        <p class="detail-label">Wind Speed</p>
+                        <p class="detail-value"><%= weather.windSpeed %> m/s</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% } %>
+      </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
