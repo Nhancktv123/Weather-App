@@ -14,7 +14,7 @@
 - axios: gọi API
 - dotenv: đọc biến môi trường
 
-## Cách cài đặt
+## Cài đặt
 
 1. Cài đặt các thư viện:
 
